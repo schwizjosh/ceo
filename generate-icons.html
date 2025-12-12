@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Andora Icon Generator</title>
+</head>
+<body>
+    <h1>Andora App Icons Generator</h1>
+    <p>Right-click on each icon and "Save Image As..." to download</p>
+
+    <div id="icons"></div>
+
+    <script>
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+        const iconsContainer = document.getElementById('icons');
+
+        sizes.forEach(size => {
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const ctx = canvas.getContext('2d');
+
+            // Background gradient (purple to primary)
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#9333EA'); // primary-600
+            gradient.addColorStop(1, '#7C3AED'); // purple-600
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // Draw "A" letter
+            ctx.fillStyle = '#FFFFFF';
+            ctx.font = `bold ${size * 0.6}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('A', size / 2, size / 2);
+
+            // Add subtle glow
+            ctx.shadowColor = 'rgba(255, 255, 255, 0.5)';
+            ctx.shadowBlur = size * 0.05;
+            ctx.fillText('A', size / 2, size / 2);
+
+            // Add to page
+            const container = document.createElement('div');
+            container.style.margin = '20px';
+            container.style.display = 'inline-block';
+
+            const label = document.createElement('p');
+            label.textContent = `icon-${size}x${size}.png`;
+
+            canvas.style.border = '1px solid #ccc';
+            canvas.style.borderRadius = '20%';
+
+            container.appendChild(label);
+            container.appendChild(canvas);
+            iconsContainer.appendChild(container);
+
+            // Create download link
+            const link = document.createElement('a');
+            link.download = `icon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.textContent = 'Download';
+            link.style.display = 'block';
+            link.style.marginTop = '10px';
+            container.appendChild(link);
+        });
+    </script>
+</body>
+</html>
