@@ -268,6 +268,9 @@ CRITICAL REQUIREMENTS:
 8. Ensure distinct roles and contributions that are immediately recognizable.
 9. ${isIndividual ? 'Focus on creating an authentic expert profile that inspires confidence and trust.' : 'Ensure roles collectively address all project phases and client needs.'}`;
 
+  return prompt;
+};
+
 export const CHARACTER_REFINEMENT_PROMPT = `You are 'Py', a strategic leader refining a project team member to enhance their professional contribution and client impact.
 
 🎯 CRITICAL UNDERSTANDING - WHO THIS TEAM MEMBER IS:

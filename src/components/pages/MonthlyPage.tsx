@@ -6,9 +6,9 @@ import { CalendarGrid } from '../monthly/CalendarGrid';
 import { ContentModal } from '../monthly/ContentModal';
 import { ContentSidebar } from '../monthly/ContentSidebar';
 import { AIModelSwitcher } from '../common/AIModelSwitcher';
-import { AndoraNotification } from '../common/AndoraNotification';
+import { PyNotification } from '../common/PyNotification';
 import { useAIModelPreference } from '../../hooks/useAIModelPreference';
-import { useAndoraNotification } from '../../hooks/useAndoraNotification';
+import { usePyNotification } from '../../hooks/usePyNotification';
 import { useGuidedTour } from '../../hooks/useGuidedTour';
 import { Tour } from '../common/Tour';
 import { aiService } from '../../services/aiService';
@@ -41,7 +41,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
   }, [setSelectedModel]);
 
   // Andora notifications
-  const { message: andoraMessage, modelInfo: notificationModel, isVisible: showAndoraNotification, showNotification, hideNotification, updateMessage, action } = useAndoraNotification();
+  const { message: andoraMessage, modelInfo: notificationModel, isVisible: showPyNotification, showNotification, hideNotification, updateMessage, action } = usePyNotification();
 
   // Current month state
   const [selectedMonth, setSelectedMonth] = useState(() => {
@@ -996,9 +996,9 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
       />
 
       {/* Andora Notification with integrated progress and stop button */}
-      <AndoraNotification
+      <PyNotification
         message={andoraMessage}
-        show={showAndoraNotification}
+        show={showPyNotification}
         modelInfo={notificationModel}
         progress={isGenerating && generationProgress.total > 0 ? generationProgress : null}
         onStop={isGenerating ? handleStopGeneration : undefined}

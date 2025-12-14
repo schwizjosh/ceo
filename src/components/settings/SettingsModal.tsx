@@ -5,7 +5,7 @@ import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import { PricingModal } from './PricingModal';
 import { Zap, Plus, Crown, Sparkles, LogOut } from 'lucide-react';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { ANDORA_PRICING_PLANS, DEFAULT_EXCHANGE_RATE } from '../../utils/constants';
 import { COMMON_TIMEZONES } from '../../utils/timezones';
 
@@ -82,7 +82,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           {/* Subscription Status */}
           <div className="neural-glow p-6 rounded-lg relative overflow-hidden border border-primary-500/30">
             <div className="absolute top-2 right-2">
-              <AndoraAvatar size="sm" />
+              <PyAvatar size="sm" />
             </div>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center">

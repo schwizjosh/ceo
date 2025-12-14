@@ -10,7 +10,7 @@ import { Character, AgeRange, CharacterPerfectFields } from '../../types';
 import { CharacterFormField, CharacterFieldKey } from '../plot/CharacterFormField';
 import { TOTAL_CHARACTER_FIELD_COUNT } from '../plot/characterFieldConstants';
 import { Button } from '../common/Button';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { ArrowLeft, Sparkles, Trash2, CheckCircle, Loader2, ChevronLeft, ChevronRight, Users, Volume2, VolumeX, Wand2, PenLine, Bot } from 'lucide-react';
 
 interface CharacterStudioProps {
@@ -461,7 +461,7 @@ export const CharacterStudio: React.FC<CharacterStudioProps> = ({
             />
             <div className="relative z-10 p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6">
               <div className="flex-shrink-0">
-                <AndoraAvatar size="lg" animate={isGenerating} />
+                <PyAvatar size="lg" animate={isGenerating} />
               </div>
               <div className="flex-1 text-center sm:text-left">
                 <h3 className="text-lg font-semibold text-slate-900 flex items-center justify-center sm:justify-start gap-2">

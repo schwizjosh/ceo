@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Settings, Zap, Sparkles, MessageCircle, Sliders, Pen, Calendar, Wand2, CalendarDays, Menu } from 'lucide-react';
 import { AccessLevel, Page, User, Brand } from '../../types';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { BrandSwitcher } from '../common/BrandSwitcher';
 import { Sidebar } from './Sidebar';
 import { cn } from '../../utils/cn';
@@ -124,7 +124,7 @@ export const NavBar: React.FC<NavBarProps> = ({
             >
               <Menu size={20} className="text-slate-600" />
             </button>
-            <AndoraAvatar size="sm" className="mr-2" />
+            <PyAvatar size="sm" className="mr-2" />
             <div>
               <h1 className="text-base sm:text-lg font-bold shimmer-text">Andora</h1>
             </div>

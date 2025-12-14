@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from '../common/Button';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { NotificationBubble } from '../common/NotificationBubble';
 import { Sparkles } from 'lucide-react';
 
@@ -42,7 +42,7 @@ export const DemoLoginPage: React.FC<DemoLoginPageProps> = ({
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <AndoraAvatar size="xl" />
+            <PyAvatar size="xl" />
           </div>
           <h1 className="text-3xl font-bold shimmer-text mb-2">Demo Access</h1>
           <div className="flex items-center justify-center space-x-2">

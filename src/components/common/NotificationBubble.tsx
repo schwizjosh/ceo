@@ -1,5 +1,5 @@
 import React from 'react';
-import { AndoraAvatar } from './AndoraAvatar';
+import { PyAvatar } from './PyAvatar';
 import { X } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
@@ -29,7 +29,7 @@ export const NotificationBubble: React.FC<NotificationBubbleProps> = ({
       typeStyles[type],
       className
     )}>
-      <AndoraAvatar size="sm" />
+      <PyAvatar size="sm" />
       <div className="flex-1 min-w-0">
         <p className="text-sm text-slate-600 leading-relaxed">{message}</p>
       </div>

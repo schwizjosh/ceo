@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Brand } from '../../types';
 import { Button } from '../common/Button';
 import { Textarea } from '../common/Textarea';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { NotificationBubble } from '../common/NotificationBubble';
 import { AIModelSwitcher } from '../common/AIModelSwitcher';
 import { useAIModelPreference } from '../../hooks/useAIModelPreference';
@@ -89,7 +89,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({ brand }) => {
     <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 py-4 sm:py-6 space-y-3 sm:space-y-4 md:space-y-6 relative floating-particles min-w-0 overflow-x-hidden">
       <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
-          <AndoraAvatar size="lg" className="shrink-0" />
+          <PyAvatar size="lg" className="shrink-0" />
           <div className="min-w-0 flex-1">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold shimmer-text truncate">Chat with Andora</h1>
             <div className="flex items-center gap-1 sm:gap-2 mt-1">
@@ -138,7 +138,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({ brand }) => {
                     <User size={16} className="text-white" />
                   </div>
                 ) : (
-                  <AndoraAvatar size="sm" />
+                  <PyAvatar size="sm" />
                 )}
               </div>
               
@@ -161,7 +161,7 @@ export const ChatPage: React.FC<ChatPageProps> = ({ brand }) => {
           
           {isGenerating && (
             <div className="flex items-start space-x-3">
-              <AndoraAvatar size="sm" animate />
+              <PyAvatar size="sm" animate />
               <div className="flex-1">
                 <div className="inline-block px-3 sm:px-4 py-2 sm:py-3 conversation-bubble">
                   <div className="flex space-x-1">

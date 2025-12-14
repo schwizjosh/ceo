@@ -1,5 +1,5 @@
 import React from 'react';
-import { AndoraAvatar } from './AndoraAvatar';
+import { PyAvatar } from './PyAvatar';
 import { ShieldAlert } from 'lucide-react';
 
 interface AccessRestrictedProps {
@@ -13,7 +13,7 @@ export const AccessRestricted: React.FC<AccessRestrictedProps> = ({ title, descr
       <div className="glass-effect rounded-2xl border border-primary-500/30 bg-white/80 p-6 sm:p-8 flex flex-col sm:flex-row gap-5">
         <div className="flex items-center justify-center">
           <div className="relative">
-            <AndoraAvatar size="lg" className="shadow-xl ring-2 ring-primary-500/40" />
+            <PyAvatar size="lg" className="shadow-xl ring-2 ring-primary-500/40" />
             <span className="absolute -bottom-2 -right-2 bg-primary-500 text-white rounded-full p-1">
               <ShieldAlert size={16} />
             </span>

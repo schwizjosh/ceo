@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { Lock, CheckCircle, AlertCircle } from 'lucide-react';
 import { apiClient } from '../../lib/api';
 
@@ -76,7 +76,7 @@ export const ResetPasswordPage: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <AndoraAvatar size="xl" />
+            <PyAvatar size="xl" />
           </div>
           <h1 className="text-3xl font-bold shimmer-text mb-2">Reset Your Password</h1>
           <p className="text-slate-500">Create a new password for your account</p>

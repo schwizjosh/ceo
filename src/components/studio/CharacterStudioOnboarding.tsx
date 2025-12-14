@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from 'react';
-import { AndoraAvatar } from './AndoraAvatar';
+import { PyAvatar } from './PyAvatar';
 import { AndoraSpeechBubble } from './AndoraSpeechBubble';
 import { Button } from '../common/Button';
 import { ChevronRight, ChevronLeft, Sparkles, Users, Wand2 } from 'lucide-react';

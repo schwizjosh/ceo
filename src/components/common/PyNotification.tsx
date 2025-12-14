@@ -1,5 +1,5 @@
 /**
- * AndoraNotification Component
+ * PyNotification Component
  *
  * A friendly notification component that shows what Andora is doing.
  * Feels like interacting with someone rather than a loading spinner.
@@ -8,7 +8,7 @@
 import React from 'react';
 import { Loader2, StopCircle } from 'lucide-react';
 
-interface AndoraNotificationProps {
+interface PyNotificationProps {
   message: string;
   show?: boolean;
   modelInfo?: string; // Kept for backward compatibility but not displayed

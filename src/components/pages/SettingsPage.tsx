@@ -3,7 +3,7 @@ import { User, Brand, AIProvider, AIModel, PricingPlan, CurrencyCode, TeamMember
 import { Button } from '../common/Button';
 import { Input } from '../common/Input';
 import { Plus, Crown, Sparkles, LogOut, Zap, Users, Trash2, Archive, ArchiveRestore, Link2, Copy, Check } from 'lucide-react';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { ANDORA_PRICING_PLANS, DEFAULT_EXCHANGE_RATE } from '../../utils/constants';
 import { COMMON_TIMEZONES } from '../../utils/timezones';
 import { useNavigate } from 'react-router-dom';
@@ -283,7 +283,7 @@ export const SettingsPage: React.FC<SettingsPageProps> = ({
       {/* Subscription Status */}
       <div className="neural-glow p-6 rounded-lg relative overflow-hidden border border-primary-500/30">
         <div className="absolute top-2 right-2">
-          <AndoraAvatar size="sm" />
+          <PyAvatar size="sm" />
         </div>
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center">

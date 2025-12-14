@@ -14,8 +14,8 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
-import { AndoraAvatar } from '../common/AndoraAvatar';
-import { AndoraNotification } from '../common/AndoraNotification';
+import { PyAvatar } from '../common/PyAvatar';
+import { PyNotification } from '../common/PyNotification';
 import { aiService } from '../../services/aiService';
 import { AIModelSwitcher, AIModel } from '../common/AIModelSwitcher';
 import { useAIModelPreference, setStoredAIModel } from '../../hooks/useAIModelPreference';
@@ -187,7 +187,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
   const [activeDate, setActiveDate] = useState<string | null>(null);
   const [currentRunTotal, setCurrentRunTotal] = useState(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [showAndoraNotification, setShowAndoraNotification] = useState(false);
+  const [showPyNotification, setShowPyNotification] = useState(false);
   const [andoraMessage, setAndoraMessage] = useState('');
 
   const processingRef = useRef(false);
@@ -376,7 +376,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
     setErrorMessage(null);
     setGenerationStatus('running');
     setAndoraMessage(`I'm crafting your week ${weekNumber} content briefs! This'll just take a moment... ✨`);
-    setShowAndoraNotification(true);
+    setShowPyNotification(true);
 
     try {
       for (const { date, plan } of actionableDates) {
@@ -416,12 +416,12 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
       }
 
       setGenerationStatus('completed');
-      setShowAndoraNotification(false);
+      setShowPyNotification(false);
     } catch (error) {
       console.error('Error generating week:', error);
       setErrorMessage('Failed to generate week content. Please try again.');
       setGenerationStatus('idle');
-      setShowAndoraNotification(false);
+      setShowPyNotification(false);
     }
   }, [
     canEdit,
@@ -464,13 +464,13 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
     // Show personalized notification
     const weekLabel = weekNumber ? `week ${weekNumber}` : 'your full month';
     setAndoraMessage(`Alright, let's create some magic! I'm orchestrating content briefs for ${weekLabel}. You'll see them appear as I work... ✨`);
-    setShowAndoraNotification(true);
+    setShowPyNotification(true);
   }, [canEdit, getDatesForWeek]);
 
   const pauseGeneration = () => {
     setIsPaused(true);
     setGenerationStatus('paused');
-    setShowAndoraNotification(false);
+    setShowPyNotification(false);
   };
 
   const resumeGeneration = () => {
@@ -478,7 +478,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
     setIsPaused(false);
     setGenerationStatus('running');
     setAndoraMessage('Back to work! Continuing where we left off... ✨');
-    setShowAndoraNotification(true);
+    setShowPyNotification(true);
   };
 
   const updateLogEntry = useCallback((date: string, updates: Partial<GenerationLogEntry>) => {
@@ -492,7 +492,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
     if (currentIndex >= generationQueue.length) {
       setGenerationStatus('completed');
       setActiveDate(null);
-      setShowAndoraNotification(false);
+      setShowPyNotification(false);
       return;
     }
 
@@ -642,9 +642,9 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
   return (
     <div className="max-w-6xl mx-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
       {/* Andora Notification */}
-      <AndoraNotification
+      <PyNotification
         message={andoraMessage}
-        show={showAndoraNotification}
+        show={showPyNotification}
         modelInfo={selectedModel}
       />
 
@@ -671,7 +671,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
       {!seasonPlanningComplete && (
         <div className="glass-effect rounded-xl border border-accent-500/40 bg-accent-500/10 p-4 sm:p-6">
           <div className="flex flex-col sm:flex-row items-start gap-4">
-            <AndoraAvatar size="md" className="shadow-lg ring-2 ring-accent-500/40" />
+            <PyAvatar size="md" className="shadow-lg ring-2 ring-accent-500/40" />
             <div className="flex-1">
               <p className="text-xs uppercase tracking-wide text-accent-300 font-semibold">Monthly theme required</p>
               <h3 className="text-lg font-semibold text-primary-900 mt-1">Set your monthly theme in Season Planning first</h3>
@@ -728,7 +728,7 @@ export const MonthlyPage: React.FC<MonthlyPageProps> = ({
 
       <div className="glass-effect rounded-lg p-5 border border-primary-500/30 space-y-4">
         <div className="flex items-start gap-4">
-          <AndoraAvatar size="sm" className="shadow-lg ring-2 ring-accent-500/40" />
+          <PyAvatar size="sm" className="shadow-lg ring-2 ring-accent-500/40" />
           <div className="flex-1">
             <p className="text-xs font-semibold uppercase tracking-wide text-accent-400">Andora Orchestration</p>
             <h2 className="text-lg font-semibold text-primary-900">Live calendar generation</h2>

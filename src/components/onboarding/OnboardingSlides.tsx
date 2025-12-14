@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../common/Button';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { NotificationBubble } from '../common/NotificationBubble';
 import { User } from '../../types';
 import { ChevronRight, Sparkles, Target, Users, Calendar, MessageCircle, Wand2 } from 'lucide-react';
@@ -137,7 +137,7 @@ export const OnboardingSlides: React.FC<OnboardingSlidesProps> = ({
           <div className="glass-effect p-8 rounded-2xl border border-primary-500/30 text-center">
             {/* Avatar */}
             <div className="flex justify-center items-center mb-6">
-              <AndoraAvatar size="xl" />
+              <PyAvatar size="xl" />
             </div>
 
             {/* Title */}

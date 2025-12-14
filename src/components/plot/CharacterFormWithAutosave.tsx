@@ -10,7 +10,7 @@ import { Character, AgeRange, CharacterPerfectFields } from '../../types';
 import { CharacterFormField, CharacterFieldKey } from './CharacterFormField';
 import { TOTAL_CHARACTER_FIELD_COUNT } from './characterFieldConstants';
 import { Button } from '../common/Button';
-import { AndoraAvatar } from '../common/AndoraAvatar';
+import { PyAvatar } from '../common/PyAvatar';
 import { Sparkles, Save, Trash2 } from 'lucide-react';
 import { debounce } from '../../utils/debounce';
 
@@ -229,7 +229,7 @@ export const CharacterFormWithAutosave: React.FC<CharacterFormWithAutosaveProps>
             )}
             <span className={`text-xs flex items-center gap-1 ml-2 ${hasAllPerfectFields ? 'text-green-600' : 'text-slate-500'
               }`}>
-              <AndoraAvatar size="sm" className="w-4 h-4" />
+              <PyAvatar size="sm" className="w-4 h-4" />
               {perfectFieldCount}/{totalFieldCount} fields perfect
             </span>
           </div>
