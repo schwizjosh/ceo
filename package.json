@@ -1,39 +1,39 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "raysourcelabs-platform",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "description": "Raysource Labs Platform - Monorepo containing CEO and Cabinet applications",
+  "workspaces": [
+    "packages/*",
+    "apps/ceo/frontend",
+    "apps/ceo/backend"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@anthropic-ai/sdk": "^0.62.0",
-    "@supabase/supabase-js": "^2.57.2",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.344.0",
-    "openai": "^5.20.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-quill": "^2.0.0",
-    "react-router-dom": "^6.30.1"
+    "dev": "npm run dev --workspaces --if-present",
+    "dev:ceo": "npm run dev -w apps/ceo/frontend & npm run dev -w apps/ceo/backend",
+    "dev:cabinet": "cd apps/cabinet/backend && python -m uvicorn app.main:app --reload --port 5002",
+    "build": "npm run build --workspaces --if-present",
+    "build:ceo": "npm run build -w apps/ceo/frontend && npm run build -w apps/ceo/backend",
+    "build:shared-auth": "npm run build -w packages/shared-auth",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "clean": "rimraf node_modules apps/*/node_modules packages/*/node_modules apps/*/dist packages/*/dist",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
   "devDependencies": {
-    "@eslint/js": "^9.9.1",
-    "@types/react": "^18.3.5",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.18",
-    "eslint": "^9.9.1",
-    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
-    "eslint-plugin-react-refresh": "^0.4.11",
-    "globals": "^15.9.0",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.5.3",
-    "typescript-eslint": "^8.3.0",
-    "vite": "^5.4.2"
+    "rimraf": "^5.0.5",
+    "turbo": "^2.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "author": "Raysource Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/raysourcelabs/platform.git"
   }
 }

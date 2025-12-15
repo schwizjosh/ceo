@@ -1,0 +1,131 @@
+version: '3.8'
+
+services:
+  # ==========================================================================
+  # DATABASES
+  # ==========================================================================
+  
+  postgres:
+    image: postgres:15-alpine
+    container_name: raysource-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: andora_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db-init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d andora_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # CEO APPLICATION (py.raysourcelabs.com)
+  # ==========================================================================
+
+  ceo-backend:
+    build:
+      context: ./apps/ceo/backend
+      dockerfile: Dockerfile
+    container_name: raysource-ceo-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=development
+      - PORT=3001
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=andora_db
+      - DB_USER=${DB_USER:-postgres}
+      - DB_PASSWORD=${DB_PASSWORD:-postgres}
+      - JWT_SECRET=${JWT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./apps/ceo/backend:/app
+      - /app/node_modules
+
+  ceo-frontend:
+    build:
+      context: ./apps/ceo/frontend
+      dockerfile: Dockerfile.dev
+    container_name: raysource-ceo-frontend
+    restart: unless-stopped
+    environment:
+      - VITE_API_URL=http://localhost:3001
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./apps/ceo/frontend:/app
+      - /app/node_modules
+    depends_on:
+      - ceo-backend
+
+  # ==========================================================================
+  # CABINET APPLICATION (cabinet.raysourcelabs.com)
+  # ==========================================================================
+
+  cabinet-backend:
+    build:
+      context: ./apps/cabinet/backend
+      dockerfile: Dockerfile
+    container_name: raysource-cabinet-backend
+    restart: unless-stopped
+    environment:
+      - ENVIRONMENT=development
+      - PORT=5002
+      - DATABASE_NAME=cabinet_db
+      - AUTH_DATABASE_NAME=andora_db
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USER=${DB_USER:-postgres}
+      - DATABASE_PASSWORD=${DB_PASSWORD:-postgres}
+      - JWT_SECRET=${JWT_SECRET}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    ports:
+      - "5002:5002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./apps/cabinet/backend:/app
+      - cabinet_uploads:/app/uploads
+
+  # ==========================================================================
+  # NGINX REVERSE PROXY (Production-like routing)
+  # ==========================================================================
+
+  nginx:
+    image: nginx:alpine
+    container_name: raysource-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - ceo-frontend
+      - ceo-backend
+      - cabinet-backend
+    profiles:
+      - production
+
+volumes:
+  postgres_data:
+  cabinet_uploads:
+
+networks:
+  default:
+    name: raysource-network

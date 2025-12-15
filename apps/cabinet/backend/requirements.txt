@@ -1,0 +1,35 @@
+# Cabinet - Intelligent Transcript Processing System
+# Python Dependencies
+
+# Core Framework
+fastapi==0.115.0
+uvicorn[standard]==0.34.0
+
+# Database
+sqlalchemy==2.0.36
+psycopg2-binary==2.9.10
+pgvector==0.3.6
+asyncpg==0.30.0
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# AI Services
+openai==1.59.5
+anthropic==0.41.1
+
+# File Handling
+python-multipart==0.0.20
+aiofiles==24.1.0
+
+# Configuration
+pydantic-settings==2.7.0
+python-dotenv==1.0.1
+
+# Audio/Video Processing
+ffmpeg-python==0.2.0
+
+# Utilities
+httpx==0.28.1
+tenacity==9.0.0
